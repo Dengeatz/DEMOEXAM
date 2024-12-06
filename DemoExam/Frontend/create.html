@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <form action="https://localhost:7243/create" method="get">
+        <input required placeholder="Номер" type="number" name="number" /><br />
+        <label for="startDate">Дата начала</label><br />
+        <input required type="date" name="startDate" /><br />
+        <input required placeholder="Оборудование" type="text" name="type" /><br />
+        <input required placeholder="Модель" type="text" name="model" /><br />
+        <input required placeholder="Описание" type="text" name="desc" /><br />
+        <input required placeholder="ФИО" type="text" name="fullName" /><br />
+        <input required placeholder="Номер телефона" type="number" name="phone" /><br />
+        <label for="status">Статус</label><br />
+        <select name="status" required>
+            <option value="" disabled selected>Выберите статус</option>
+            <option value="Не начато">Не начато</option>
+            <option value="В процессе ремонта">В процессе ремонта</option>
+            <option value="Готова к выдаче">Готова к выдаче</option>
+        </select>
+        <br />
+        <input type="submit" value="Создать" />
+    </form>
+</body>
+</html>

@@ -1,0 +1,47 @@
+﻿﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Статистика</title>
+</head>
+<body>
+    Количество выполненных заявок:
+    <span id="complete_count"></span><br>
+    Среднее время выполнения заявки:
+    <span id="average_time_to_complete"></span> дней<br>
+    <h3>Статистика по типам неисправностей</h3>
+    <table>
+        <thead>
+        <th>Тип неисправностей</th>
+        <th>Количество</th>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</body>
+<script>
+    let complete_count = document.getElementById("complete_count");
+    let average_time_to_complete = document.getElementById("average_time_to_complete");
+    let stat_table = document.querySelector("tbody");
+
+    GetStats();
+
+    async function GetStats() {
+        let data = await fetch("https://localhost:7243/statistics");
+        let stat = await data.json();
+
+        complete_count.append(stat.complete_count);
+        average_time_to_complete.append(stat.average_time_to_complete);
+
+        for (var key of Object.keys(stat.problem_type_stat)) {
+            let tr = document.createElement("tr");
+
+            tr.innerHTML = `
+            <td>${key}</td>
+            <td>${stat.problem_type_stat[key]}</td>`;
+
+            stat_table.append(tr);
+        }
+    }
+</script>
+</html>
